@@ -10,7 +10,7 @@ public class ButtonNavigation : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            Debug.Log("Esc key pressed");
+            CloseAudioMenu();
             OpenPauseMenu();
         }
     }
@@ -25,26 +25,31 @@ public class ButtonNavigation : MonoBehaviour {
         Application.Quit();
     }
 
+    //exit game
+    public void QuiteGame() {
+        SceneManager.LoadScene("StartScreen");
+    }
+
     //close pause menu
     public void ClosePauseMenu() {
         pnlPaused.SetBool("open", false);
     }
 
-    //Open pause menu
+    //open pause menu
     public void OpenPauseMenu() {
+        pnlAudio.SetBool("open", false); ;
         pnlPaused.SetBool("open", true);
     }
 
     //open audio menu
     public void OpenAudioMenu() {
-        ClosePauseMenu();
+        pnlPaused.SetBool("open", false);
         pnlAudio.SetBool("open", true);
     }
 
     //close audio menu
     public void CloseAudioMenu() {
         pnlAudio.SetBool("open", false);
+        pnlPaused.SetBool("open", true);
     }
-
-
 }
